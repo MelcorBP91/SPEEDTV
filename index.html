@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SPEEDTV PREMIUM – IPTV Français</title>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: url("Image_dune_salle_despeed_tv.png") no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.72);
+      z-index: -1;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    header {
+      width: 100%;
+      padding: 18px 24px;
+      background: rgba(0, 0, 0, 0.78);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      color: #00eaff;
+      text-shadow: 0 0 10px #00eaff;
+    }
+
+    .snap-btn {
+      background: #fffc00;
+      color: #000;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-weight: bold;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.7);
+      transition: 0.25s;
+      font-size: 13px;
+    }
+
+    .snap-btn img {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      object-fit: cover;
+    }
+
+    .snap-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #fffc00;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 30px 15px 60px;
+    }
+
+    section.section {
+      background: rgba(0, 0, 0, 0.65);
+      border-radius: 18px;
+      padding: 30px 20px;
+      margin-bottom: 28px;
+      border: 1px solid rgba(255,255,255,0.18);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.9);
+    }
+
+    .section-title {
+      font-size: 26px;
+      margin-bottom: 10px;
+      text-align: center;
+      color: #00eaff;
+      text-shadow: 0 0 12px #00eaff;
+    }
+
+    .section-sub {
+      text-align: center;
+      color: #ddd;
+      max-width: 800px;
+      margin: 0 auto 20px;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    /* HERO */
+    .hero h1 {
+      font-size: 30px;
+      text-align: center;
+      margin-bottom: 12px;
+      color: #00eaff;
+      text-shadow: 0 0 15px #00eaff;
+    }
+
+    .hero p {
+      font-size: 15px;
+      text-align: center;
+      color: #e0e0e0;
+      max-width: 800px;
+      margin: 0 auto 15px;
+      line-height: 1.7;
+    }
+
+    .hero strong { color: #ffeb3b; }
+
+    .hero-cta {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .hero-cta .snap-main {
+      background: #fffc00;
+      color: #000;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-size: 15px;
+      font-weight: bold;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      box-shadow: 0 0 15px #fffc00;
+      transition: 0.25s;
+    }
+
+    .hero-cta .snap-main img {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      object-fit: cover;
+    }
+
+    .hero-cta .snap-main:hover {
+      transform: scale(1.04);
+      box-shadow: 0 0 22px #fffc00;
+    }
+
+    /* STATS */
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .stat-box {
+      min-width: 130px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(10,10,10,0.9);
+      border: 1px solid rgba(255,255,255,0.2);
+      text-align: center;
+      box-shadow: 0 0 14px rgba(0,0,0,0.8);
+    }
+
+    .stat-number {
+      font-size: 20px;
+      font-weight: bold;
+      color: #00eaff;
+      margin-bottom: 3px;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: #ccc;
+    }
+
+    /* AVANTAGES */
+    .advantages {
+      display: grid;
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    @media (min-width: 800px) {
+      .advantages {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .adv-card {
+      background: rgba(5,5,5,0.85);
+      border-radius: 16px;
+      padding: 16px 14px;
+      border: 1px solid rgba(255,255,255,0.18);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.8);
+      transition: box-shadow 0.25s, border-color 0.25s;
+    }
+
+    /* Surbrillance seulement, pas de mouvement */
+    .adv-card:hover {
+      box-shadow: 0 0 18px #00eaff;
+      border-color: #00eaff;
+    }
+
+    .adv-title {
+      font-size: 15px;
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+
+    .adv-text {
+      font-size: 13px;
+      color: #ddd;
+      line-height: 1.6;
+    }
+
+    /* CHAÎNES */
+    .channels-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 18px;
+      margin-top: 10px;
+    }
+
+    .channels-grid img {
+      width: 200px;
+      border-radius: 14px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.9);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .channels-grid img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #00eaff;
+    }
+
+    /* OFFRES */
+    .offers {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .offer-card {
+      width: 280px;
+      background: rgba(5,5,5,0.9);
+      border-radius: 20px;
+      padding: 20px 18px;
+      border: 1px solid rgba(255,255,255,0.18);
+      box-shadow: 0 12px 25px rgba(0,0,0,1);
+      text-align: center;
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s, box-shadow 0.25s;
+    }
+
+    /* Effet stylé sur offres : surbrillance + légère élévation */
+    .offer-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 15px 35px rgba(0,0,0,1);
+      border-color: #00eaff;
+    }
+
+    .offer-title {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    .offer-price {
+      font-size: 26px;
+      font-weight: bold;
+      margin-bottom: 4px;
+      color: #4cff4c;
+    }
+
+    .offer-duration {
+      font-size: 12px;
+      color: #bbbbbb;
+      margin-bottom: 8px;
+    }
+
+    .offer-desc {
+      font-size: 13px;
+      color: #e0e0e0;
+      margin-bottom: 8px;
+    }
+
+    .offer-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 14px;
+      font-size: 13px;
+      color: #ddd;
+      text-align: left;
+    }
+
+    .offer-list li {
+      margin-bottom: 3px;
+    }
+
+    .offer-list li::before {
+      content: "✔ ";
+      color: #00eaff;
+    }
+
+    .offer-btn {
+      display: inline-block;
+      background: #fffc00;
+      color: #000;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-weight: bold;
+      font-size: 14px;
+      box-shadow: 0 0 15px #fffc00;
+      transition: 0.25s;
+    }
+
+    .offer-btn:hover {
+      transform: scale(1.05);
+    }
+
+    /* CONTACT */
+    .contact-box {
+      text-align: center;
+      font-size: 14px;
+      color: #ddd;
+      line-height: 1.7;
+    }
+
+    .contact-box strong {
+      color: #fffc00;
+    }
+
+    /* FAQ */
+    .faq-item {
+      background: rgba(0,0,0,0.75);
+      border-radius: 14px;
+      padding: 12px 14px;
+      margin-bottom: 10px;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .faq-q {
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 3px;
+    }
+
+    .faq-a {
+      font-size: 13px;
+      color: #ddd;
+    }
+
+    footer {
+      text-align: center;
+      padding: 18px;
+      font-size: 12px;
+      background: rgba(0,0,0,0.85);
+      border-top: 1px solid rgba(255,255,255,0.15);
+    }
+
+    /* BOUTON SNAP FLOTTANT */
+    .floating-snap {
+      position: fixed;
+      bottom: 18px;
+      right: 18px;
+      background: #fffc00;
+      border-radius: 50%;
+      padding: 8px;
+      box-shadow: 0 0 22px #fffc00;
+      z-index: 999;
+      transition: 0.25s;
+    }
+
+    .floating-snap img {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      object-fit: cover;
+    }
+
+    .floating-snap:hover {
+      transform: scale(1.08);
+    }
+
+    /* ANIMATIONS FADE-IN */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 700px) {
+      header {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+      }
+      .offer-card {
+        width: 100%;
+        max-width: 320px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="overlay"></div>
+
+<header>
+  <div class="logo">SPEEDTV PREMIUM</div>
+  <a class="snap-btn" href="https://www.snapchat.com/@speedtvpremium" target="_blank">
+    <img src="snapchat9.png" alt="Snapchat">
+    SNAP : SPEEDTVPRENIUM
+  </a>
+</header>
+
+<div class="container">
+
+  <!-- HERO -->
+  <section class="section hero fade-in">
+    <h1>Le Meilleur IPTV Français du marché ⚡</h1>
+    <p>
+      Avec plusieurs années d’expérience et une technologie IPTV optimisée,  
+      <strong>SPEEDTV PREMIUM</strong> offre une expérience TV fluide, stable et complète :  
+      chaînes sport, cinéma, séries, VOD et replays, disponibles 24h/24.
+      <br><br>
+      Profitez de tarifs compétitifs, d’une qualité d’image FHD / 4K et d’un accompagnement via Snapchat.
+    </p>
+    <div class="hero-cta">
+      <a class="snap-main" href="https://www.snapchat.com/@speedtvpremium" target="_blank">
+        <img src="snapchat9.png" alt="">
+        Contacter sur Snapchat
+      </a>
+    </div>
+
+    <div class="stats">
+      <div class="stat-box">
+        <div class="stat-number">+12 000</div>
+        <div class="stat-label">Chaînes TV</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">+50 000</div>
+        <div class="stat-label">Films & Séries</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">4K / FHD</div>
+        <div class="stat-label">Qualité image</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">⏱ 2–10 min</div>
+        <div class="stat-label">Activation</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- POURQUOI CHOISIR -->
+  <section class="section fade-in">
+    <h2 class="section-title">Pourquoi choisir SPEEDTV PREMIUM ?</h2>
+    <p class="section-sub">
+      SPEEDTV PREMIUM est pensé pour ceux qui veulent un service IPTV fiable, complet et simple à utiliser,  
+      avec un vrai suivi et des conseils personnalisés.
+    </p>
+    <div class="advantages">
+      <div class="adv-card">
+        <div class="adv-title">Tarifs compétitifs</div>
+        <div class="adv-text">
+          Des abonnements IPTV à des prix largement inférieurs au câble ou au satellite,  
+          tout en conservant une excellente qualité de diffusion.
+        </div>
+      </div>
+      <div class="adv-card">
+        <div class="adv-title">Accompagnement expert</div>
+        <div class="adv-text">
+          Un contact direct via Snapchat pour vous orienter, vous aider à installer l’IPTV  
+          et résoudre vos éventuelles questions rapidement.
+        </div>
+      </div>
+      <div class="adv-card">
+        <div class="adv-title">Service stable & optimisé</div>
+        <div class="adv-text">
+          Serveurs optimisés pour une diffusion fluide, moins de coupures et un confort de visionnage  
+          au quotidien, même sur les événements sportifs.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAÎNES INCLUSES -->
+  <section class="section fade-in">
+    <h2 class="section-title">Chaînes & plateformes incluses 📺</h2>
+    <p class="section-sub">
+      Accès à un large catalogue de chaînes et contenus (selon droits disponibles), incluant sport, films, séries,  
+      divertissement et dessins animés.
+    </p>
+    <div class="channels-grid">
+      <img src="Une_salle_de_cinema_1.png" alt="BeIN / Sport">
+      <img src="Une_salle_de_cinema_4.png" alt="Canal+">
+      <img src="Une_salle_de_cinema_2.png" alt="Netflix / VOD">
+      <img src="Une_salle_de_cinema_6.png" alt="Ligue 1 / Football">
+      <img src="Une_salle_de_cinema_8.png" alt="Disney+">
+    </div>
+  </section>
+
+  <!-- OFFRES -->
+  <section class="section fade-in">
+    <h2 class="section-title">Nos abonnements IPTV</h2>
+    <p class="section-sub">
+      Choisissez la durée d’abonnement adaptée à votre budget.  
+      Le contenu reste le même, seule la durée change.
+    </p>
+
+    <div class="offers">
+
+      <div class="offer-card" style="border-color:#00eaff;">
+        <div class="offer-title">Abonnement 3 mois</div>
+        <div class="offer-price">24,99€</div>
+        <div class="offer-duration">/ 3 mois</div>
+        <div class="offer-desc">Idéal pour tester SPEEDTV PREMIUM sur plusieurs mois.</div>
+        <ul class="offer-list">
+          <li>+12 000 chaînes TV</li>
+          <li>VOD : films & séries illimités</li>
+          <li>Qualité HD / FHD</li>
+          <li>Support par Snapchat</li>
+        </ul>
+        <a class="offer-btn" href="https://www.snapchat.com/@speedtvpremium" target="_blank">
+          Commander 3 mois
+        </a>
+      </div>
+
+      <div class="offer-card" style="border-color:#ff4c4c;">
+        <div class="offer-title">Abonnement 6 mois</div>
+        <div class="offer-price">44,99€</div>
+        <div class="offer-duration">/ 6 mois</div>
+        <div class="offer-desc">Le meilleur compromis durée / prix.</div>
+        <ul class="offer-list">
+          <li>Chaînes premium & internationales</li>
+          <li>Catalogue VOD très complet</li>
+          <li>Serveurs plus stables</li>
+          <li>Assistance prioritaire</li>
+        </ul>
+        <a class="offer-btn" href="https://www.snapchat.com/@speedtvpremium" target="_blank">
+          Commander 6 mois
+        </a>
+      </div>
+
+      <div class="offer-card" style="border-color:#4cff4c;">
+        <div class="offer-title">Abonnement 12 mois</div>
+        <div class="offer-price">59,99€</div>
+        <div class="offer-duration">/ 12 mois</div>
+        <div class="offer-desc">L’offre la plus économique sur l’année.</div>
+        <ul class="offer-list">
+          <li>Accès IPTV pendant 12 mois</li>
+          <li>Priorité serveur maximale</li>
+          <li>Mises à jour régulières</li>
+          <li>Suivi sur le long terme</li>
+        </ul>
+        <a class="offer-btn" href="https://www.snapchat.com/@speedtvpremium" target="_blank">
+          Commander 12 mois
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section fade-in">
+    <h2 class="section-title">Nous contacter</h2>
+    <div class="contact-box">
+      <p>Pour toute question, activation ou renseignement, contactez-nous directement sur Snapchat :</p>
+      <p><strong>SNAPCHAT : SPEEDTVPRENIUM</strong></p>
+      <p>
+        <a class="snap-main" href="https://www.snapchat.com/@speedtvpremium" target="_blank" style="margin-top:10px;display:inline-flex;align-items:center;gap:8px;background:#fffc00;color:#000;padding:8px 16px;border-radius:30px;font-size:14px;">
+          <img src="snapchat9.png" alt="" style="width:22px;height:22px;border-radius:6px;object-fit:cover;">
+          Ouvrir Snapchat
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section fade-in">
+    <h2 class="section-title">FAQ – Questions fréquentes</h2>
+
+    <div class="faq-item">
+      <div class="faq-q">⏱ Combien de temps pour activer mon abonnement ?</div>
+      <div class="faq-a">En moyenne entre 2 et 10 minutes après avoir confirmé le paiement et transmis les informations nécessaires.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">📺 Est-ce compatible avec ma TV / téléphone ?</div>
+      <div class="faq-a">Oui, SPEEDTV PREMIUM fonctionne sur la plupart des Smart TV, box Android, Fire Stick, smartphones Android / iOS, PC et Mac via des applications IPTV.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">🌍 Y a-t-il des chaînes internationales ?</div>
+      <div class="faq-a">Oui, selon les droits disponibles : chaînes françaises, européennes, arabes, africaines, etc. ainsi que de nombreuses chaînes sport & cinéma.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">💳 Comment se passe le paiement ?</div>
+      <div class="faq-a">Les modalités de paiement sont expliquées directement sur Snapchat, selon votre pays et vos préférences.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">⚖️ L’IPTV est-elle légale ?</div>
+      <div class="faq-a">
+        La légalité dépend des droits de diffusion dans votre pays.  
+        Il vous appartient de respecter les lois locales et les droits associés aux contenus visionnés.
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  © 2025 SPEEDTV PREMIUM – Contact Snapchat : 
+  <a href="https://www.snapchat.com/@speedtvpremium" style="color:#fffc00;">SPEEDTVPRENIUM</a>
+</footer>
+
+<!-- BOUTON SNAPCHAT FLOTTANT -->
+<a class="floating-snap" href="https://www.snapchat.com/@speedtvpremium" target="_blank">
+  <img src="snapchat9.png" alt="Snapchat">
+</a>
+
+<script>
+  // fade-in au scroll
+  const observers = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.fade-in').forEach(sec => observers.observe(sec));
+</script>
+
+</body>
+</html>
